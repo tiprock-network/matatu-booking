@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'travelbilawas'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A516016AC6E74EA8BEB0A6E6878C5929 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9179F7892A354FB2B445A39D252E4B7E }}
