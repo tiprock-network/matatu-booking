@@ -1,4 +1,4 @@
 bcrypt
-secrets
 flask_mysqldb
 flask_mail
+flask
