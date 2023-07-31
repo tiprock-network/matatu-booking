@@ -12,9 +12,9 @@ app=Flask(__name__)
 
 
 app.secret_key='booking'
-app.config['MYSQL_HOST']='localhost'
-app.config['MYSQL_USER']='root'
-app.config['MYSQL_PASSWORD']=''
+app.config['MYSQL_HOST']='db4free.net'
+app.config['MYSQL_USER']='bus_booking'
+app.config['MYSQL_PASSWORD']='core90#OO0pk'
 app.config['MYSQL_DB']='bus_booking'
 
 mysql=MySQL(app)
