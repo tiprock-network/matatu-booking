@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} Payment {% endblock %}
+
+{% block content %}
+<style>
+    @media (max-width:768px){
+    .trip-box-input{
+        width: 350px;
+    }
+   
+}
+
+</style>
+
+<div class="section">
+    <div class="trip-box-input">
+        <div class="sacco">
+            <div class="logo">
+                <div class="img">
+                    <img src="{{url_for('static',filename='images/mat.jpg')}}">
+                </div>
+                <h2>TRAVEL BILA <span>'WAS'</span> Mpesa Payment</h2>
+            </div>
+        </div>
+        <form action="" method="POST" enctype="multipart/form-data">
+        <label for="inputAddress" class="form-label">Enter phone number</label>
+        <input type="text" name="phone" placeholder="254700000000" required>
+        <label for="inputAddress" class="form-label">Enter amount</label>
+        <input type="text" name="amount" value="{{amount}}" placeholder="Enter Amount" required>
+        <input type="submit" class="btn btn-primary" value="Make payment">
+    </form>
+    </div>
+</div>
+
+{% endblock %}

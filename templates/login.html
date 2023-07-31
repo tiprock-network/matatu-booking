@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="box-input">
+        <div class="sacco">
+            <div class="logo">
+                <div class="img">
+                    <img src="{{url_for('static',filename='images/mat.jpg')}}">
+                </div>
+                <h2>TRAVEL BILA <span>'WAS'</span> </h2>
+            </div>
+        </div>
+        {% with messages=get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category,msg in messages %}
+          
+            <div class="alert alert-{{category}} alert-dismissible fade show  name" role="alert" >
+              <strong> {{msg}}</strong>
+              <button type="button" class="btn-close name1" data-bs-dismiss="alert" aria-label="close"></button>
+            </div>
+    
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form action="" method="POST">
+        <input type="text" name="username" placeholder="Enter your username" value="{{username}}">
+        <input type="password" name="password" id="passwordInput" placeholder="Enter your password" value="{{password}}">
+        <input type="checkbox" style="width: 20px; height: 20px;" id="showPasswordCheckbox" />show password
+        <input type="submit" class="btn btn-primary" style="font-weight: bolder;"  value="Login">
+        <p style="color: #fff ;">Don't have an account? <a href="{{url_for('register')}}" style="text-decoration: none; color: aqua; font-weight: bold;">Register</a></p>
+        <p style="color: #fff ;">Forgot your password ? <a href="{{url_for('forgot')}}" style="text-decoration: none; color: aqua; font-weight: bold;">Click here</a></p>
+      </form>
+    </div>
+</div>
+
+<script>
+const showPasswordCheckbox = document.getElementById('showPasswordCheckbox');
+const passwordInput = document.getElementById('passwordInput');
+
+showPasswordCheckbox.addEventListener('change', function () {
+  if (showPasswordCheckbox.checked) {
+    passwordInput.type = 'text';
+  } else {
+    passwordInput.type = 'password';
+  }
+});
+
+</script>
+{% endblock %}

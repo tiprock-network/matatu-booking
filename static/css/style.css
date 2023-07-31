@@ -1,0 +1,290 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.nav-item .nav-link{
+    font-weight: 700;
+    transition: all 0.5s ease;
+}
+.nav-item .nav-link:hover{
+    color: orange;
+}
+:root{
+    --primary:#555;
+    --secondary:tomato;
+    --shadow:hsl(0 0% 80%)0 0 16px;
+    --box-background:#fff;
+    --body-background:linear-gradient(360deg,#eae4,rgb(106, 108, 108)qua);
+}
+.navbar{
+    background: green !important;
+}
+/* register */
+.section{
+    height: 92vh;
+    background: var(--body-background);
+}
+.container-fluid i{
+    color: orange;
+    font-size: 20px;
+    margin-left: 5px;
+}
+.sticky{
+    position: sticky;
+    top: 0;
+}
+.box-input{
+    width: 420px;
+    height: auto;
+    box-shadow: var(--shadow);
+    background: var(--box-background);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    padding: 10px;
+    border-radius: 5px;
+    background: linear-gradient(to right top,
+    rgb(236, 23, 190),
+    rgb(4 ,238, 187)
+    );
+}
+.sacco{
+    width: 100%;
+    height: 100px;
+    background: var(--secondary);
+    border-radius: 5px;
+    padding: 10px;
+}
+.sacco .logo{
+    display: flex;
+    align-items: center;
+}
+.sacco .logo .img{
+    width: 90px;
+    height: 80px;
+    background: var(--box-background);
+}
+.logo .img img{
+    width: 100%;
+    height: 100%;
+}
+.sacco .logo h2{
+    color: var(--box-background);
+    padding-left: 5px;
+}
+.sacco .logo h2 span{
+    color: aqua;
+}
+
+
+.box-input h3{
+    text-align: center;
+    color: var(--primary);
+}
+.box-input input{
+    width: 100%;
+    height: 40px;
+    margin: 5px auto;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    padding-left: 8px;
+   
+}
+.trip-box-input input ,select{
+    width: 100%;
+    height: 40px;
+    margin: 5px auto;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 8px;
+}
+@media (max-width:768px){
+    .box-input{
+        width: 350px;
+    }
+    .trip-box-input{
+        width: 150px;
+    }
+    .heading p{
+        text-align: center;
+        color: #fff;
+        line-height: normal;
+    }
+    .col-lg-3 .elements a{
+        margin-top: unset;
+    }
+    html, body{
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        overflow-x: hidden;
+    }
+   
+    
+}
+
+
+/* home */
+.section3{
+    margin-top: 50px;
+    height: auto;
+    margin-bottom: 5%;
+}
+.heading h1{
+    text-align: center;
+    font-size: 50px;
+    color: aqua;
+}
+.heading h1 span{
+    color: var(--secondary);
+}
+.heading p{
+    text-align: center;
+    color: #fff;
+    line-height: 25px;
+}
+
+.section3 h2{
+    text-align: center;
+    color: var(--primary);
+    position: relative;
+    margin-top: 20px;
+}
+.section3 h2::before{
+    content: '';
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(rgb(78, 242, 242),#fff);
+    position: absolute;
+    top: -100%;
+    transform: rotate(10deg);
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+   
+.col-lg-3 .elements{
+    margin-top: 50px;
+    background: var(--box-background);
+    box-shadow: var(--shadow);
+    padding: 10px;
+    border-radius: 5px;
+    height: auto;
+    
+}
+.col-lg-4 .elements{
+    margin-top: 50px;
+    background: var(--box-background);
+    box-shadow: var(--shadow);
+    padding: 10px;
+    border-radius: 5px;
+    height: auto;
+    
+}
+.col-lg-3 .elements h3{
+    text-align: center;
+    color: var(--primary);
+}
+/* footer */
+footer hr{
+    margin-top: 40px;
+    max-width: 700px;
+    margin: auto;
+    height: 3px;
+    background: var(--secondary);
+
+}
+
+/* trip booking */
+.trip-box-input{
+    width: 750px;
+    height: auto;
+    box-shadow: var(--shadow);
+    background: #1d1d2c;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    padding: 10px;
+    border-radius: 5px;
+}
+.form-label{
+    color: #fff;
+}
+.col-lg-4 .elements .img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.col-lg-4 .elements img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    
+}
+.col-lg-4 h3{
+    color: var(--primary);
+    text-align: center;
+}
+.rating{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.rating i{
+    color: green;
+    font-size: 20px;
+    padding: 5px;
+}
+
+/* dashboard */
+.col-lg-6 .elements{
+    background: var(--box-background);
+    box-shadow: var(--shadow);
+    padding: 10px;
+    border-radius: 5px;
+    height: 400px;
+    margin: 20px auto;
+    overflow-y: scroll;
+
+}
+.col-lg-6 .elements table{
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+.col-lg-6 .elements table th{
+    color: #5ad164;
+}
+.col-lg-12 .elements{
+    margin-top: 50px;
+    background: var(--box-background);
+    box-shadow: var(--shadow);
+    padding: 10px;
+    border-radius: 5px;
+    height: auto;
+    
+}
+
+
+
+/* back icon */
+.circle{
+    margin-left: 5%;
+    margin-top: 2%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: tomato;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .circle i{
+    font-size: 30px;
+    color: #555;
+  }

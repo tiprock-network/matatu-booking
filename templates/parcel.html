@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Parcel{% endblock %}
+
+{% block content %}
+<style>
+    @media (max-width:768px){
+        .trip-box-input{
+            width: 350px;
+        }
+    }
+</style>
+
+<div class="section">
+    <div class="circle" >
+        <a href="{{url_for('home')}}"><i class="fa-solid fa-arrow-left" ></i></a>
+    </div>
+    <div class="trip-box-input">
+        <div class="sacco">
+            <div class="logo">
+                <div class="img">
+                    <img src="{{url_for('static',filename='images/mat.jpg')}}">
+                </div>
+                <h2>TRAVEL BILA <span>'WAS'</span> PARCEL SENDING</h2>
+            </div>
+        </div>
+        {% with messages=get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category,msg in messages %}
+          
+            <div class="alert alert-{{category}} alert-dismissible fade show  name" role="alert" >
+              <strong> {{msg}}</strong>
+              <button type="button" class="btn-close name1" data-bs-dismiss="alert" aria-label="close"></button>
+            </div>
+    
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <form class="row g-3" action="" method="POST" enctype="multipart/form-data">
+            <div class="col-md-6">
+                <label for="inputText4" class="form-label">Pickup location</label>
+                <input type="text" class="form-control" id="inputEmail4" value="{{location}}" name="location" placeholder="Enter pickup location">
+            </div>
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Destination</label>
+                <select id="inputState" class="form-select" name="destination" style="border: 2px solid #555;">
+                    <option selected>{{destination}}</option>
+                    <option value="Nairobi">Nairobi</option>
+                    <option value="Eldoret">Eldoret</option>
+                    <option value="Nakuru">Nakuru</option>
+                    <option value="Nyeri">Nyeri</option>
+                    <option value="Nyahururu">Nyahururu</option>
+                </select>
+            </div>
+            <div class="col-md-8">
+                <label for="inputCity" class="form-label">Amount</label>
+                <input type="text" class="form-control" id="inputCity" placeholder="Enter amount" readonly value="{{amount}}" name="amount">
+            </div>
+            <div class="col-md-4">
+                <label for="inputCity" class="form-label">Parcel Photo</label>
+                <input type="file" name="file" class="form-control" required id="inputCity" value="{{photo}}">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Book now</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+    function updateAmount() {
+        const selectElement = document.querySelector('select[name="destination"]');
+        const destination = selectElement.value;
+        let amount = '';
+        if (destination) {
+            amount = '600';
+        }
+        const amountElement = document.querySelector('input[name="amount"]');
+        amountElement.value = amount;
+    }
+
+  
+    document.querySelector('select[name="destination"]').addEventListener('change', updateAmount);
+
+    updateAmount();
+</script>
+
+{% endblock %}

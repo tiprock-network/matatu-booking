@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %} Reset {% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="box-input">
+        <div class="sacco">
+            <div class="logo">
+                <div class="img">
+                    <img src="{{url_for('static',filename='images/mat.jpg')}}">
+                </div>
+                <h2>TRAVEL BILA <span>'WAS'</span></h2>
+            </div>
+        </div>
+        {% with messages=get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category,msg in messages %}
+          
+            <div class="alert alert-{{category}} alert-dismissible fade show  name" role="alert" >
+              <strong> {{msg}}</strong>
+              <button type="button" class="btn-close name1" data-bs-dismiss="alert" aria-label="close"></button>
+            </div>
+    
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form action="" method="POST">
+        <input type="password" id="passwordInput" name="password" placeholder="Enter new password" value="{{password}}">
+        <input type="password" id="confirmPasswordInput" name="confirm" placeholder="Confirm password" value="{{password}}">
+        <input type="checkbox" style="width: 20px; height: 20px;" id="showPasswordCheckbox" />show password
+        <input type="submit" class="btn btn-primary" style="font-weight: bolder;" value="Reset password">
+        <p style="color: #fff;">Already have an account ? <a href="{{url_for('login')}}" style="text-decoration: none; color: aqua; font-weight: bold;">Login</a></p>
+    </form>
+    </div>
+</div>
+
+<script>
+const showPasswordCheckbox = document.getElementById('showPasswordCheckbox');
+const passwordInput = document.getElementById('passwordInput');
+const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+
+showPasswordCheckbox.addEventListener('change', function () {
+  if (showPasswordCheckbox.checked) {
+    passwordInput.type = 'text';
+    confirmPasswordInput.type = 'text';
+  } else {
+    passwordInput.type = 'password';
+    confirmPasswordInput.type = 'password';
+  }
+});
+</script>
+{% endblock %}

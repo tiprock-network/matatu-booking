@@ -1,0 +1,6 @@
+bcrypt
+base64
+secrets
+flask_mysqldb
+flask_mail
+secrets

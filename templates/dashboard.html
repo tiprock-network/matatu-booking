@@ -1,0 +1,382 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashboard {% endblock %}
+
+
+
+{% block content %}
+
+
+{% if user=='Admin' %}
+
+
+<div class="container">
+
+  <a href="{{url_for('users')}}" style="margin-top: 20px;" class="btn btn-outline-success">Monitor users</a>
+
+  {% with messages=get_flashed_messages(with_categories=True) %}
+  {% if messages %}
+  {% for category,msg in messages %}
+    
+      <div class="alert alert-{{category}} alert-dismissible fade show  name" role="alert" >
+        <strong> {{msg}}</strong>
+        <button type="button" class="btn-close name1" data-bs-dismiss="alert" aria-label="close"></button>
+      </div>
+
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+  <div class="row">
+      <div class="col-lg-3">
+          <div class="elements bg-info">
+              <h3 style="color: azure;">SOLO TRAVEL</h3>
+              <hr>
+              <h1 style="color: #555; text-align: center;">{{trip_count}}</h1>
+          </div>
+      </div>
+      <div class="col-lg-3">
+          <div class="elements bg-danger">
+              <h3 style="color: azure;">EVENT TRAVEL</h3>
+              <hr>
+              <h1 style="color: orange; text-align: center;">{{event_count}}</h1>
+          </div>
+      </div>
+      <div class="col-lg-3">
+          <div class="elements bg-primary ">
+              <h3 style="color: azure;">INSTITUTION</h3> 
+              <hr>
+              <h1 style="color: #211e1e; text-align: center;">{{student_count}}</h1>
+             
+          </div>
+      </div>
+      <div class="col-lg-3">
+          <div class="elements bg-warning">
+              <h3 style="color: azure;">PARCEL SERVICES</h3>
+              <hr>
+              <h1 style="color: #555; text-align: center;">{{parcel_count}}</h1>
+            
+          </div>
+      </div>
+  </div>
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="elements">
+        <h3 style="color: #800000; text-align:center;"><strong>Trip Bookings</strong></h3>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <tr>
+              <th>Username</th>
+              <th>Location</th>
+              <th>Destination</th>
+              <th>Constituency</th>
+              <th>Town</th>
+              <th>Date</th>
+              <th>Seats</th>
+              <th>Amount</th>
+            </tr>
+            {% for data in result %}
+            <tr>
+              <td>{{data[2]}} </td>
+              <td>{{data[3]}}</td>
+              <td>{{data[4]}}</td>
+              <td>{{data[8]}}</td>
+              <td>{{data[9]}}</td>
+              <td>{{data[5]}}</td>
+              <td>{{data[6]}}</td>
+              <td>{{data[7]}}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  
+  <!-- events -->
+  
+    <div class="col-lg-6">
+      <div class="elements">
+        <h3 style="color: #800000; text-align:center;"><strong>Event Bookings</strong></h3>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <tr>
+              <th>Username</th>
+              <th>Event_type</th>
+              <th>Location</th>
+              <th>Destination</th>
+              <th>Constituency</th>
+              <th>Town</th>
+              <th>Date</th>
+              <th>Passengers</th>
+              <th>Amount</th>
+            </tr>
+            {% for data in results %}
+            <tr>
+              <td>{{data[2]}} </td>
+              <td>{{data[8]}}</td>
+              <td>{{data[3]}}</td>
+              <td>{{data[4]}}</td>
+              <td>{{data[9]}}</td>
+              <td>{{data[10]}}</td>
+              <td>{{data[5]}}</td>
+              <td>{{data[6]}}</td>
+              <td>{{data[7]}}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+ 
+  <!-- students -->
+  
+    <div class="col-lg-6">
+      <div class="elements">
+        <h3 style="color: #800000; text-align:center;"><strong>Student Bookings</strong></h3>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <tr>
+              <th>Username</th>
+              <th>Institution</th>
+              <th>Destination</th>
+              <th>Students</th>
+              <th>Matatus</th>
+              <th>Date</th>
+              <th>Amount</th>
+            </tr>
+            {% for data in students %}
+            <tr>
+              <td>{{data[2]}} </td>
+              <td>{{data[3]}} </td>
+              <td>{{data[5]}}</td>
+              <td>{{data[6]}}</td>
+              <td>{{data[7]}}</td>
+              <td>{{data[4]}}</td>
+              <td>{{data[8]}}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  
+  <!-- parcel -->
+
+    <div class="col-lg-6">
+      <div class="elements">
+        <h3 style="color: #800000; text-align:center;"><strong>Parcel Sending</strong></h3>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <tr>
+              <th>Username</th>
+              <th>Location</th>
+              <th>Destination</th>
+              <th>image</th>
+              <th>Amount</th>
+            </tr>
+            {% for data in parcel %}
+            <tr>
+              <td>{{data[2]}} </td>
+              <td>{{data[3]}}</td>
+              <td>{{data[4]}}</td>
+              <td>
+                <img src="data:image/jpeg;base64,{{ data[5] }}" width="100" height="100" style="border-radius: 50%;" >
+              </td> 
+              <td>{{data[6]}}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+{% elif user=='User' %}
+
+        {% with messages=get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category,msg in messages %}
+          
+            <div class="alert alert-{{category}} alert-dismissible fade show  name" role="alert" >
+              <strong> {{msg}}</strong>
+              <button type="button" class="btn-close name1" data-bs-dismiss="alert" aria-label="close"></button>
+            </div>
+    
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+
+
+<div class="container">
+  {% if user_result %}
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="elements">
+        <h3 style="color: #555; text-align:center;">Trip Bookings</h3>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <tr>
+              <th>Username</th>
+              <th>Location</th>
+              <th>Destination</th>
+              <th>Constituency</th>
+              <th>Town</th>
+              <th>Date</th>
+              <th>Seats</th>
+              <th>Amount</th>
+              <th>Pay</th>
+            </tr>
+            {% for data in user_result %}
+            <tr>
+              <td>{{data[2]}} </td>
+              <td>{{data[3]}}</td>
+              <td>{{data[4]}}</td>
+              <td>{{data[8]}}</td>
+              <td>{{data[9]}}</td>
+              <td>{{data[5]}}</td>
+              <td>{{data[6]}}</td>
+              <td>{{data[7]}}</td>
+              <td><a href="{{url_for('pay')}}" class="btn btn-outline-primary">Pay Now</a></td> 
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  {% endif %}
+  <!-- events -->
+  {% if user_results %}
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="elements">
+        <h3 style="color: #555; text-align:center;">My Event Booking History</h3>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <tr>
+              <th>Username</th>
+              <th>Event_type</th>
+              <th>Location</th>
+              <th>Destination</th>
+              <th>constituency</th>
+              <th>town</th>
+              <th>Date</th>
+              <th>Passengers</th>
+              <th>Amount</th>
+              <th>Pay</th>
+            </tr>
+            {% for data in user_results %}
+            <tr>
+              <td>{{data[2]}} </td>
+              <td>{{data[8]}}</td>
+              <td>{{data[3]}}</td>
+              <td>{{data[4]}}</td>
+              <td>{{data[8]}}</td>
+              <td>{{data[9]}}</td>
+              <td>{{data[5]}}</td>
+              <td>{{data[6]}}</td>
+              <td>{{data[7]}}</td>
+              <td><a href="{{url_for('pay')}}" class="btn btn-outline-primary">Pay Now</a></td> 
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  {% endif %}
+  <!-- students -->
+  {% if user_students %}
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="elements">
+        <h3 style="color: #555; text-align:center;">Student Bookings</h3>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <tr>
+              <th>Username</th>
+              <th>Institution</th>
+              <th>Destination</th>
+              <th>Students</th>
+              <th>Matatus</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Pay</th> 
+            </tr>
+            {% for data in user_students %}
+            <tr>
+              <td>{{data[2]}} </td>
+              <td>{{data[3]}} </td>
+              <td>{{data[5]}}</td>
+              <td>{{data[6]}}</td>
+              <td>{{data[7]}}</td>
+              <td>{{data[4]}}</td>
+              <td>{{data[8]}}</td>
+              <td><a href="{{url_for('pay')}}" class="btn btn-outline-primary">Pay Now</a></td> 
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  {% endif %}
+  <!-- parcel -->
+  {% if user_parcel %}
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="elements">
+        <h3 style="color: #555; text-align:center;">Parcel Sending</h3>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <tr>
+              <th>Username</th>
+              <th>Location</th>
+              <th>Destination</th>
+              <th>Image</th>
+              <th>Amount</th>
+              <th>Pay</th>
+            </tr>
+            {% for data in user_parcel %}
+            <tr>
+              <td>{{data[2]}} </td>
+              <td>{{data[3]}}</td>
+              <td>{{data[4]}}</td>
+              <td>
+                <img src="data:image/jpeg;base64,{{ data[5] }}" width="100" height="100" style="border-radius: 50%;" >
+              </td>
+              <td>{{data[6]}}</td>
+              <td><a href="{{url_for('pay',amount=data[6])}}" class="btn btn-outline-primary">Pay Now</a></td>
+            </tr>
+            {% endfor %}
+
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  
+  {% endif %}
+
+
+</div>
+{% else %}
+
+<h3><marquee behavior="" direction="">You don't have any booking history yet</marquee></h3>
+
+{% endif %}
+
+{% endblock %}

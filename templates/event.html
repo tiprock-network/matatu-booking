@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %}Event booking{% endblock %}
+
+{% block content %}
+<style>
+    @media (max-width:768px) {
+        .trip-box-input {
+            width: 350px;
+        }
+    }
+</style>
+
+<div class="section">
+    <div class="circle">
+        <a href="{{url_for('home')}}"><i class="fa-solid fa-arrow-left"></i></a>
+    </div>
+    <div class="trip-box-input">
+        <div class="sacco">
+            <div class="logo">
+                <div class="img">
+                    <img src="{{url_for('static',filename='images/mat.jpg')}}">
+                </div>
+                <h2>TRAVEL BILA <span>'WAS'</span> EVENT BOOKING</h2>
+            </div>
+        </div>
+        {% with messages=get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, msg in messages %}
+
+        <div class="alert alert-{{category}} alert-dismissible fade show name" role="alert">
+            <strong>{{msg}}</strong>
+            <button type="button" class="btn-close name1" data-bs-dismiss="alert" aria-label="close"></button>
+        </div>
+
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <form class="row g-3" action="" method="POST" enctype="multipart/form-data">
+          <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Type of event</label>
+            <select id="inputState" class="form-select" name="type" value="{{destination}}"
+                    style="border: 2px solid #555;">
+                <option selected>{{event_type}}</option>
+                <option value="Roracio">Roracio</option>
+                <option value="Wedding">Wedding</option>
+                <option value="Burial">Burial</option>
+                <option value="Road_trip">Road_trip</option>
+            </select>
+        </div>
+            <div class="col-md-6">
+                <label for="inputText4" class="form-label">Pickup location</label>
+                <input type="text" class="form-control" id="inputEmail4" name="location"
+                       placeholder="Enter pickup location" value="{{location}}">
+            </div>
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">County of destination</label>
+                <select id="inputState" class="form-select" name="destination" value="{{destination}}"
+                        style="border: 2px solid #555;">
+                    <option selected>{{destination}}</option>
+                    <option value="Nairobi">Nairobi</option>
+                    <option value="Eldoret">Eldoret</option>
+                    <option value="Nakuru">Nakuru</option>
+                    <option value="Nyeri">Nyeri</option>
+                    <option value="Nyahururu">Nyahururu</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="inputCity" class="form-label">Enter constituency</label>
+                <input type="text" class="form-control" id="inputCity" placeholder="Enter constituency" name="constituency" value="{{constituency}}">
+            </div>
+            <div class="col-md-3">
+                <label for="inputCity" class="form-label">Enter town</label>
+                <input type="text" class="form-control" id="inputCity" placeholder="Enter town" name="town" value="{{town}}">
+            </div>
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">Number of passengers</label>
+                <input type="text" class="form-control" id="inputCity" placeholder="Enter number of passengers" name="matatu" value="{{matatu}}">
+            </div>
+            <div class="col-md-3">
+                <label for="inputState" class="form-label">Date of travel</label>
+                <input type="datetime-local" class="form-control" id="inputEmail4" value="{{date}}" name="date">
+            </div>
+            <div class="col-md-3">
+                <label for="inputState" class="form-label">Amount</label>
+                <input type="text" class="form-control" readonly id="inputEmail4" name="amount" value="{{amount}}"
+                       placeholder="Enter amount">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Book now</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Create a mapping of destination counties to amounts
+    const countyAmounts = {
+        Nairobi: 600,
+        Eldoret: 800,
+        Nakuru: 750,
+        Nyeri: 700,
+        Nyahururu: 900
+        // Add more counties and their respective amounts as needed
+    };
+
+    function updateAmount() {
+        const selectElement = document.querySelector('select[name="destination"]');
+        const destination = selectElement.value;
+        const matatuElement = document.querySelector('input[name="matatu"]');
+        const matatus = parseInt(matatuElement.value);
+
+        let amount = '';
+        if (destination && countyAmounts.hasOwnProperty(destination)) {
+            amount = countyAmounts[destination].toString();
+            if (matatus && matatus > 1) {
+                amount = (countyAmounts[destination] * matatus).toString();
+            }
+        }
+
+        const amountElement = document.querySelector('input[name="amount"]');
+        amountElement.value = amount;
+    }
+
+    document.querySelector('select[name="destination"]').addEventListener('change', updateAmount);
+    document.querySelector('input[name="matatu"]').addEventListener('input', updateAmount);
+
+    updateAmount(); // Initialize the amount on page load
+</script>
+
+{% endblock %}

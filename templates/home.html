@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+
+{% block content %}
+
+<div class="section3">
+    <div class="container">
+        {% with messages=get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category,msg in messages %}
+          
+            <div class="alert alert-{{category}} alert-dismissible fade show  name" role="alert" >
+              <strong> {{msg}}</strong>
+              <button type="button" class="btn-close name1" data-bs-dismiss="alert" aria-label="close"></button>
+            </div>
+    
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <h1 style="color: #555;">Welcome, <span style="font-size: 25px; color: palevioletred;">{{session['username']}}</span></h1>
+        <h3 style="color: #555;">What would you like to book today ?</h3>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="elements bg-info">
+                    <h3 style="color: azure;">SOLO TRAVEL</h3>
+                    <hr>
+                    <h4 style="color: #555; text-align: center;">Book your matatu tickets with us for a seamless travel experience</h4>
+                    <hr>
+                    <a href="{{url_for('trip')}}" style="margin-top: 60px;" class="btn btn-danger" >Get started !</a>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="elements bg-danger">
+                    <h3 style="color: azure;">EVENT TRAVEL</h3>
+                    <hr>
+                    <h4 style="color: orange; text-align: center;">Book Our matatus for your next event! Be it weddings,dowry ceremony, burial</h4>
+                    <hr>
+                    <a href="{{url_for('event')}}"style="margin-top: 60px;" class="btn btn-info" >Get started !</a>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="elements bg-primary ">
+                    <h3 style="color: azure;">INSTITUTION TRAVEL</h3> 
+                    <hr>
+                    <h4 style="color: #211e1e; ">Affordable and convenient matatu services tailored for students and other organizations</h4>
+                    <hr>
+                    <a href="{{url_for('student')}}" class="btn btn-warning" >Get started !</a>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="elements bg-warning">
+                    <h3 style="color: azure;">PARCEL SERVICES</h3>
+                    <hr>
+                    <h4 style="color: #555; text-align: center;">Send Your Parcel Safely and Swiftly with Us!</h4>
+                    <hr>
+                    <a href="{{url_for('parcel')}}" style="margin-top: 90px;" class="btn btn-success" >Get started !</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <hr >
+    <P style="text-align: center; color: #555;"> &copy;TRAVEL BILA 'WAS' 2023 || All rights reserved </P>
+</footer>
+
+{% endblock %}
