@@ -28,7 +28,7 @@ app.config['MAIL_USERNAME'] = 'laytonmatheka7@gmail.com'
 app.config['MAIL_PASSWORD'] = 'qamfnggyldkpbhje'
 
 mail = Mail(app)
-otp=randint(00000,99999)
+otp=str(secrets.randbelow(1000000)).zfill(6)
 
 
 
