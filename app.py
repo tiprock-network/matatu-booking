@@ -48,6 +48,7 @@ def register():
             confirm=request.form['confirm']
             choice=request.form['user']
             phone=request.form['phone']
+            otp=str(secrets.randbelow(1000000)).zfill(6)
             otp_secret=otp
             is_verified=0
             if username==''or email==''or password==''or phone=='' or confirm=='' or choice=='':
@@ -66,7 +67,6 @@ def register():
                 flash('Password should contain capital letters','danger')
                 return render_template('register.html',phone=phone,username=username,email=email,password=password,confirm=confirm)
             else:
-                otp=str(secrets.randbelow(1000000)).zfill(6)
                 send_verification(email, otp)
                 flash(f"Verification email sent to {email}",'success')
                 hashed_password=bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
